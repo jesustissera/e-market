@@ -11,7 +11,10 @@ import org.junit.*
 @TestFor(Usuario)
 class UsuarioTests {
 
-    void testSomething() {
-       fail "Implement me"
+    void testOfertar() {
+       def miusuario = new Usuario(nombre:'pepe',rol:'Usuario');
+	   def mioferta = new Oferta(texto:'Esta es mi oferta')
+	   miusuario.ofertar(mioferta)
+	   assert miusuario.Listaofertas.size() == 1
     }
 }
