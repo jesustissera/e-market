@@ -7,6 +7,7 @@ class UsuarioController {
 
     def index() { 
 		//render(view:"/usuario/ofertar")
+		redirect(action:'ofertarProducto')
 	}
 	
 	def ofertarProducto(String mensaje){
