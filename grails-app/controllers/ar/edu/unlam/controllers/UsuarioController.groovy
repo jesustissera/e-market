@@ -17,14 +17,29 @@ class UsuarioController {
 		//usuario.ofertar(mioferta)
 		
 		//def miOferta = new Oferta(texto:${mensaje}); 
+		
 	}
 	
 	def mostrarOferta(){
-		def mensaje = params.CampoOferta;
-		def usuario = new Usuario(nombre:'pepe',rol:'UsuarioLogueado')
-		def mioferta = new Oferta(texto: '${mensaje}')
-		usuario.ofertar(mioferta)
-		flash.message = "${mensaje}"
+		//def mensaje = params.CampoOferta;
+		def usuario = new Usuario(id:1,nombre:'pepe',rol:'UsuarioLogueado')
+		def mioferta = new Oferta(texto: params.CampoOferta,miusuario:usuario)
+		//usuario.ofertar(mioferta)
+		usuario.save()
+		mioferta.save()
+		def misOfertas = Oferta.withCriteria {
+			miusuario
+			{
+				eq "nombre",usuario.nombre
+			}
+		};		//def u = usuario.save()
 		
-	}
+
+		//flash.message = "${usuario.listaofertas.texto}"
+		//def staticoferta=[ofertas : u]
+
+		render(template:'mostrarOfertaTemplate',collection:misOfertas,var:'CampoOferta')	
+	}	
+	
+
 }
