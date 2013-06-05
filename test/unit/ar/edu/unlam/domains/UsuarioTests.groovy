@@ -13,8 +13,27 @@ class UsuarioTests {
 
     void testOfertar() {
        def miusuario = new Usuario(nombre:'pepe',rol:'Usuario');
-	   def mioferta = new Oferta(texto:'Esta es mi oferta')
+	   def mioferta = new Oferta(texto:'Esta es mi primera oferta')
 	   miusuario.ofertar(mioferta)
-	   assert miusuario.Listaofertas.size() == 1
+	   def mioferta2 = new Oferta(texto:'Esta es mi segunda oferta')
+	   miusuario.ofertar(mioferta2)
+	   assert miusuario.listaofertas.size() == 2
+	   println miusuario.listaofertas.texto
     }
+	
+	void testGuardarEnDB() {
+		def miusuario = new Usuario(nombre:'pepe',rol:'Usuario');
+		
+		def mioferta = new Oferta(texto:'Esta es mi primera oferta')
+		def mioferta2 = new Oferta(texto:'Esta es mi segunda oferta')
+		
+		miusuario.ofertar(mioferta)
+		miusuario.ofertar(mioferta2)
+		
+		miusuario.save();
+		println Usuario.get(1).nombre
+		println Usuario.get(1).listaofertas.texto
+		
+		//assert miusuario.listaofertas.size() == 2
+	 }
 }
