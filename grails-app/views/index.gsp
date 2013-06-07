@@ -79,6 +79,9 @@
 				}
 			}
 		</style>
+	
+	
+    ${response.sendRedirect("Usuario/ofertarProducto")}
 	</head>
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -114,6 +117,7 @@
 				<ul>
 					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+					   
 					</g:each>
 				</ul>
 			</div>
